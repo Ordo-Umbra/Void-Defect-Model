@@ -20,16 +20,16 @@ VDM proposes shifting from electron-centric energy models toward a geometry-firs
 ## Repository Contents
 ## 📚 Chapters
 
-1. [Introduction – The Void as the Ultimate Primitive](chapter1.md)  
-2. [Core Components – Defects, Ticks, and Fields](chapter2.md)  
-3. [Unification – Deriving QM, GR, and the Standard Model](chapter3.md)  
-4. [Chemistry and Energy – High-Density Compounds and Void Drives](chapter4.md)  
-5. [Materials – Engineered Defects for Strength and Lightness](chapter5.md)  
-6. [Biology – Life as Bio-Defects](chapter6.md)  
-7. [Consciousness – Emergent from Neural Windings](chapter7.md)  
-8. [Philosophy – Purpose in Increasing Complexity](chapter8.md)  
-9. [Scaling Life – Multi-Planetary and Cosmic](chapter9.md)  
-10. [Conclusions and Future Work](chapter10.md)
+1. [Introduction – The Void as the Ultimate Primitive](Chapter1.md)  
+2. [Core Components – Defects, Ticks, and Fields](Chapter2.md)  
+3. [Unification – Deriving QM, GR, and the Standard Model](Chapter3.md)  
+4. [Chemistry and Energy – High-Density Compounds and Void Drives](Chapter4.md)  
+5. [Materials – Engineered Defects for Strength and Lightness](Chapter5.md)  
+6. [Biology – Life as Bio-Defects](Chapter6.md)  
+7. [Consciousness – Emergent from Neural Windings](Chapter7.md)  
+8. [Philosophy – Purpose in Increasing Complexity](Chapter8.md)  
+9. [Scaling Life – Multi-Planetary and Cosmic](Chapter9.md)  
+10. [Conclusions and Future Work](Chapter10.md)
 - **chapters/**: Individual Markdown files for each chapter of the manuscript  
 - **assets/figures/**: Diagrams, plots, and rendered simulations  
 - **assets/data/**: Raw simulation outputs, crystal benchmarks, CNC toolpaths  
