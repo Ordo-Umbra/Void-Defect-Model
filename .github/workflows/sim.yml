@@ -23,8 +23,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
          
-        - name: void-defect-sim
-          path: assets/animations/void_defect_simulation.mp4
+        name: void-defect-sim
+        path: assets/animations/void_defect_simulation.mp4
           
         - name: Run 3D simulation
           run: python3 scripts/void_field_3d.py
