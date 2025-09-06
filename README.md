@@ -8,9 +8,7 @@ Created and maintained by Devon Birch. Licensed under [CC BY 4.0](LICENSE.md).
 ## What Is This?
 
 The Void Defect Model (VDM) is a unified theory that explains how recursive geometry and material defects drive emergent complexity across scales. It reinterprets quantum mechanics, gravity, particle physics, chemistry, biology, and consciousness as deterministic phenomena arising from defects in a self-interacting void field. This repo houses the full VDM manuscript, simulation data, fabrication workflows, and teaching tools to help you explore and extend the model.
-## Void Field Simulation
-
-[Watch the animation](void_defect_simulation.mp4)
+[▶ Watch the Void Field Simulation](https://raw.githubusercontent.com/Ordo-Umbra/Void-Defect-Model/main/void_defect_simulation.mp4)
 ---
 
 ## Why It Matters
