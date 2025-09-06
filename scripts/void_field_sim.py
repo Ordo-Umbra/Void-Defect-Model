@@ -3,6 +3,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
+import os
 
 # ── Simulation parameters ─────────────────────────────────────────────
 grid_size   = 100            # resolution of the field
@@ -93,6 +94,8 @@ ani = animation.FuncAnimation(fig,
                               blit=True)
 
 # ── Save as MP4 (requires ffmpeg) or GIF ──────────────────────────────
+# Ensure the output directory exists
+os.makedirs('assets/animations', exist_ok=True)
 ani.save('assets/animations/void_defect_simulation.mp4',
          writer='ffmpeg',
          dpi=150)
