@@ -84,10 +84,10 @@ ani = animation.FuncAnimation(fig,
                               blit=False)
 
 # ── Save animation ─────────────────────────────────────────────────────
-ani.save('assets/animations/void_field_3d.mp4',
+ani.save('void_field_3d.mp4',
          writer='ffmpeg',
          dpi=100,
          fps=15)
 
 plt.close(fig)
-print("3D animation saved ▶ assets/animations/void_field_3d.mp4")
+print("3D animation saved ▶ void_field_3d.mp4")
