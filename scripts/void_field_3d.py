@@ -52,8 +52,9 @@ surf = ax.plot_surface(X, Y, phi, cmap='viridis', linewidth=0, antialiased=False
 def update(frame):
     global positions, velocities, surf
 
-    # clear previous surface
-    ax.collections.clear()
+    # remove previous surface safely
+    global surf
+    surf.remove()
     
     # compute current field & gradients
     phi = sum(compute_field(positions[i], energies[i], scales[i])
