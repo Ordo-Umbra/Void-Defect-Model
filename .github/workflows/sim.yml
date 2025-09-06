@@ -1,0 +1,26 @@
+name: Build Void-Field Animation
+
+on: [push]
+
+jobs:
+  anim:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg python3-pip
+
+      - name: Install Python packages
+        run: pip3 install numpy matplotlib
+
+      - name: Run simulation
+        run: python3 scripts/void_field_sim.py
+
+      - name: Upload animation artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: void-defect-sim
+          path: assets/animations/void_defect_simulation.mp4
