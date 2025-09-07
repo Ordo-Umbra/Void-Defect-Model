@@ -10,7 +10,7 @@ X, Y = np.meshgrid(x, y)
 R = np.sqrt(X**2 + Y**2 + 1e-6)
 
 # Simple inverse-radius field (defect strength)
-field = 1 / R  # Could adjust to exponential decay or other forms for VDM specifics
+field = 1 / R
 
 # Plot contour
 plt.figure(figsize=(8, 6))
@@ -21,7 +21,7 @@ plt.xlabel('X')
 plt.ylabel('Y')
 plt.grid(True, linestyle='--', alpha=0.5)
 
-# Save to file (add to assets/figures)
-plt.savefig('assets/figures/defect_field.png')
-plt.show()  # Displays locally
- 
+# Save and close to avoid reuse
+plt.savefig('../assets/figures/defect_field.png')
+plt.close()
+# plt.show()  # Commented out for online runners
