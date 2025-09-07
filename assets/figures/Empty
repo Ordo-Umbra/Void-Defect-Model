@@ -1,1 +1,2 @@
 mkdir -p assets/figures simulations
+python simulations/defect_field.py
