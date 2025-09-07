@@ -1,26 +1,42 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+from matplotlib.animation import PillowWriter  # For GIF save
 
-def sierpinski(n):
-    points = np.array([[0, 0], [1, 0], [0.5, np.sqrt(3)/2]])
-    for _ in range(n):
-        new_points = []
-        for p in points:
-            new_points.append(p)
-            new_points.append((p + points[0]) / 2)
-            new_points.append((p + points[1]) / 2)
-            new_points.append((p + points[2]) / 2)
-        points = np.unique(new_points, axis=0)
-    return points
+grid_size = 50
+grid = np.zeros((grid_size, grid_size))
 
-pts = sierpinski(5)
+# Central defect
+grid[grid_size//2, grid_size//2] = 1
 
-plt.figure(figsize=(8, 8))
-plt.scatter(pts[:, 0], pts[:, 1], s=1, color='blue')
-plt.title('Recursive Geometry: Sierpinski Triangle (VDM Analogy)')
-plt.axis('equal')
-plt.axis('off')
+# Add some random scattered defects
+grid[np.random.randint(0, grid_size, 5), np.random.randint(0, grid_size, 5)] = 1
 
-plt.savefig('../assets/figures/sierpinski_triangle.png')
-plt.close()
+# Add a glider pattern for sustained motion (top-left area)
+glider = np.array([[0, 1, 0],
+                   [0, 0, 1],
+                   [1, 1, 1]])
+grid[5:8, 5:8] = glider  # Place it at row 5-7, col 5-7 (adjust if needed)
+
+def update(frame):
+    global grid
+    new_grid = grid.copy()
+    for i in range(grid_size):
+        for j in range(grid_size):
+            neighbors = np.sum(grid[max(0, i-1):min(grid_size, i+2), max(0, j-1):min(grid_size, j+2)]) - grid[i, j]
+            if grid[i, j] == 1:
+                if neighbors < 2 or neighbors > 3:
+                    new_grid[i, j] = 0
+            else:
+                if neighbors == 3:
+                    new_grid[i, j] = 1
+    grid = new_grid
+    im.set_array(grid)
+    return [im]
+
+fig, ax = plt.subplots(figsize=(6, 6))
+im = ax.imshow(grid, cmap='binary')
+ani = FuncAnimation(fig, update, frames=50, interval=200, blit=True)
+ani.save('../assets/figures/defect_propagation.gif', writer=PillowWriter(fps=5))
+plt.close(fig)
 # plt.show()
