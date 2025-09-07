@@ -1,2 +1,3 @@
-mkdir -p assets/figures simulations
 python simulations/defect_field.py
+python simulations/recursive_geometry.py
+python simulations/defect_propagation.py
