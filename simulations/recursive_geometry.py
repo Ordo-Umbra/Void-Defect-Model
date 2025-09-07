@@ -27,3 +27,4 @@ plt.axis('off')
 # Save
 plt.savefig('assets/figures/sierpinski_triangle.png')
 plt.show()
+ 
