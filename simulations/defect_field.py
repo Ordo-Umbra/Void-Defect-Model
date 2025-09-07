@@ -24,3 +24,4 @@ plt.grid(True, linestyle='--', alpha=0.5)
 # Save to file (add to assets/figures)
 plt.savefig('assets/figures/defect_field.png')
 plt.show()  # Displays locally
+ 
