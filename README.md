@@ -48,4 +48,17 @@ VDM proposes shifting from electron-centric energy models toward a geometry-firs
    ```bash
    chmod +x scripts/build.sh
    ./scripts/build.sh
-mkdir -p assets/figures simulations
+
+simulations/
+  particles_3d/
+    README.md
+    requirements.txt   # (if Python) or package.json (if JS)
+    src/
+      physics.py       # force calculations & integrators
+      sim_runner.py    # main loop + data export
+    notebooks/         # Jupyter demos
+    assets/
+      frames/          # PLY, VTK, or JSON dumps
+    viz/
+      render.py        # standalone visualizer or web server
+    tests/             # sanity checks (energy conservation, etc.)
