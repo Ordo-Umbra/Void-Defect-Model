@@ -1,9 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
-import imageio  # For GIF save
+import imageio
+import os
 
-# Use same params as binding sim
+# Create output dir if needed
+os.makedirs('assets/figures', exist_ok=True)
+
+# Same params as binding sim
 N_def = 3
 positions = np.random.uniform(-1.0, 1.0, (N_def, 2))
 velocities = np.random.uniform(-0.1, 0.1, (N_def, 2))
@@ -11,6 +14,7 @@ E = np.ones(N_def) * 1.0
 R = np.ones(N_def) * 2.0
 dt = 0.01
 n_steps = 1000  # Shorter for quick anim
+frame_step = 10  # Save every 10th step to reduce frames/GIF size (~100 frames)
 
 # Evolve and store traj
 traj = np.zeros((n_steps, N_def, 2))
@@ -29,18 +33,29 @@ for t in range(1, n_steps):
     positions += dt * velocities
     traj[t] = positions
 
-# Animation
-fig, ax = plt.subplots(figsize=(6, 6))
-ax.set_xlim(-3, 3)
-ax.set_ylim(-3, 3)
-lines = [ax.plot([], [], label=f'Defect {i+1}')[0] for i in range(N_def)]
-ax.legend()
+# Generate frames
+frames = []
+for frame in range(0, n_steps, frame_step):
+    fig, ax = plt.subplots(figsize=(6, 6))
+    ax.set_xlim(-3, 3)
+    ax.set_ylim(-3, 3)
+    ax.set_title(f'Tick: {frame * dt:.2f}')
+    for i in range(N_def):
+        ax.plot(traj[:frame, i, 0], traj[:frame, i, 1], label=f'Defect {i+1}')
+    ax.legend()
+    # Save frame as RGB array (with int cast fix)
+    fig.canvas.draw()
+    renderer = fig.canvas.get_renderer()
+    height, width = int(renderer.height), int(renderer.width)  # Cast to int
+    image = np.frombuffer(renderer.buffer_rgba(), dtype='uint8').reshape(height, width, 4)
+    image = image[:, :, :3]  # Drop alpha for RGB
+    frames.append(image)
+    plt.close(fig)
 
-def update(frame):
-    for i, line in enumerate(lines):
-        line.set_data(traj[:frame, i, 0], traj[:frame, i, 1])
-    return lines
+# Save as GIF with imageio
+imageio.mimsave('assets/figures/particle_binding.gif', frames, fps=30)
+print("GIF saved to assets/figures/particle_binding.gif")
 
-anim = FuncAnimation(fig, update, frames=n_steps, interval=20, blit=True)
-anim.save('assets/figures/particle_binding.gif', writer='imagemagick', fps=30)
-plt.close()  # No show, just save 
+# Optional: Display in Colab
+# from IPython.display import Image
+# Image('assets/figures/particle_binding.gif')
