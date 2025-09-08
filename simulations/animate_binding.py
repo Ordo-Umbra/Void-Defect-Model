@@ -43,4 +43,4 @@ def update(frame):
 
 anim = FuncAnimation(fig, update, frames=n_steps, interval=20, blit=True)
 anim.save('assets/figures/particle_binding.gif', writer='imagemagick', fps=30)
-plt.close()  # No show, just save
+plt.close()  # No show, just save 
