@@ -26,23 +26,24 @@ H = -D2 + V_diag
 # Compute 5 most negative eigenvalues/vectors (bound states)
 evals, evecs = eigsh(H, k=5, which='SA')
 
-# Plot potential and wavefunctions (scaled for visibility)
+# Plot potential and wavefunctions (using psi for oscillations)
 plt.figure(figsize=(10, 6))
 plt.plot(r, V, 'k-', label='V(r)', linewidth=2)
 
-scale = 2.0  # Adjust to fit wavefunctions nicely
+colors = ['b', 'orange', 'g', 'r', 'purple']  # Cycle colors
+scale = 1.5  # Adjust to fit nicely (smaller for psi vs psi^2)
 for i in range(len(evals)):
-    if evals[i] >= 0: continue  # Only bound states
+    if evals[i] >= 0: continue
     psi = evecs[:, i]
     psi /= np.max(np.abs(psi))  # Normalize
-    plt.plot(r, evals[i] + scale * psi**2, label=f'E_{i} ≈ {evals[i]:.2f}')
+    plt.plot(r, evals[i] + scale * psi, colors[i], label=f'E_{i} ≈ {evals[i]:.2f}')
 
 plt.xlabel('r')
-plt.ylabel('Energy / |ψ(r)|²')
+plt.ylabel('Energy / ψ(r)')
 plt.title('Emergent Particle Levels from Defect Potential')
 plt.xlim([-5 * sigma, 5 * sigma])
 plt.ylim([min(V) - 1, 2])
 plt.legend()
 plt.grid(True)
 plt.savefig('assets/figures/bound_states.png')
-plt.show()  # Optional: Display during run
+plt.show()  # Optional
