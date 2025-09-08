@@ -1,39 +1,3 @@
-import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation, PillowWriter
-
-# Parameters from paper (Ch2.5-2.6)
-r_h = 3.0  # Horizon radius (where Φ > crit)
-phi_crit = 0.5  # Horizon threshold
-E_i = 1.0
-R_i = 5.0  # Larger scale for field
-num_pairs = 10  # Stochastic pairs per frame (up to)
-frames = 50
-
-# Grid
-size = 100
-x = np.linspace(-10, 10, size)
-y = np.linspace(-10, 10, size)
-X, Y = np.meshgrid(x, y)
-R = np.sqrt(X**2 + Y**2)
-
-# Central defect field (black hole analog)
-def phi_field():
-    return E_i * np.exp(-R**2 / (2 * R_i**2))
-
-# Animation setup
-fig, ax = plt.subplots(figsize=(6, 6))
-field = phi_field()
-im = ax.imshow(field, cmap='plasma', extent=[-10, 10, -10, 10])
-ax.contour(X, Y, field, levels=[phi_crit], colors='red', linestyles='--')  # Horizon
-scatters = []  # For pairs
-title = ax.set_title('Hawking-Like Radiation: Stochastic Pairs Near Horizon')
-
-def update(frame):
-    global scatters
-    # Clear old scatters
-    for sc in scatters:
-        sc.remove()
     scatters = []
 
     # Generate random pairs near horizon (r ~ r_h)
