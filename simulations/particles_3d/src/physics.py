@@ -21,6 +21,7 @@ def compute_force(i, positions, energies, ranges):
         d = np.linalg.norm(d_vec)
         if d == 0:
             continue
-        grad = -4 * energies[j] * ranges[j]**2 * d_vec * np.exp(-2 * (ranges[j]**2) * (d**2))
+        grad = -4 * energies[j] * (ranges[j]**2) * d_vec \
+               * np.exp(-2 * (ranges[j]**2) * (d**2))
         force += grad
     return force
